@@ -1,40 +1,78 @@
 const repo = "https://github.com/mdrTanvir/SDG-Health-Analytics";
 
-const countries = [
-  { name: "Australia", band: "2026 estimate", color: "green", note: "Life expectancy 84.2 years · maternal mortality 1.4" },
-  { name: "Albania", band: "2026 estimate", color: "orange", note: "Life expectancy 79.7 years · maternal mortality 7.4" },
-  { name: "Malaysia", band: "2026 estimate", color: "orange", note: "Life expectancy 76.8 years · maternal mortality 29.2" },
-  { name: "Morocco", band: "2026 estimate", color: "red", note: "Life expectancy 76.0 years · maternal mortality 66.5" },
-  { name: "Thailand", band: "2026 estimate", color: "red", note: "Life expectancy 76.2 years · maternal mortality 48.9" },
+const groups = [
+  { number: "01", title: "Highest pressure", copy: "High maternal mortality and shorter life expectancy point to a need for focused health-system support.", tone: "coral" },
+  { number: "02", title: "Transitioning outcomes", copy: "Progress is visible, yet outcomes remain uneven. These countries benefit from targeted, sustained investment.", tone: "gold" },
+  { number: "03", title: "Strong health outcomes", copy: "Low maternal mortality and longer life expectancy show what resilient care systems can achieve.", tone: "mint" },
 ];
 
 export default function Home() {
-  return <main>
-    <style>{`.question{padding:100px 0}.qa-grid{display:grid;grid-template-columns:54% 36%;justify-content:space-between;gap:38px;margin-top:25px}.qa-label{font-size:10px;letter-spacing:.13em;font-weight:700;color:var(--teal)}.qa-grid h2{font-size:clamp(35px,4vw,57px);line-height:.96;margin:20px 0}.answer{border-left:3px solid var(--teal);padding:5px 0 0 25px}.answer p{font-size:15px;line-height:1.58;color:var(--muted);margin:16px 0}.answer p b{color:var(--ink)}.answer .answer-note{font-size:11px;line-height:1.45;border-top:1px solid #d0d8d2;padding-top:15px;color:#6e858f}.latest{background:#143b52;color:#edf5ef;padding:87px 0 76px}.latest-head{display:flex;justify-content:space-between;gap:30px;align-items:end}.latest h2{font-size:clamp(40px,4.6vw,65px);line-height:.91;margin:23px 0 0}.latest h2 i{color:var(--lime)}.latest-head>a{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--lime);padding-bottom:10px}.latest-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:57px}.latest-stats article{border-top:2px solid var(--teal);padding-top:15px}.latest-stats strong{display:block;font:400 49px/.95 Georgia,serif;letter-spacing:-.06em;color:var(--lime)}.latest-stats span{display:block;max-width:135px;font-size:11px;line-height:1.35;color:#b9ced0;margin-top:8px}.latest-note{margin:44px 0 0;padding-top:15px;border-top:1px solid #3f6373;font-size:11px;line-height:1.45;color:#a9c0c4;max-width:700px}@media(max-width:720px){.qa-grid,.latest-stats{grid-template-columns:1fr}.question{padding:65px 0}.answer{padding-left:18px}.latest{padding:65px 0}.latest-head{display:block}.latest-head>a{display:inline-block;margin-top:23px}.latest-stats{margin-top:38px;gap:22px}.latest-stats article{display:grid;grid-template-columns:100px 1fr;gap:14px;align-items:center}.latest-stats span{margin:0;max-width:none}}`}</style>
-    <style>{`.people{padding:96px 0;background:#e5eee7}.people-head,.tech-head{display:grid;grid-template-columns:54% 36%;justify-content:space-between;gap:30px;margin-top:22px}.people h2,.tech h2{font-size:clamp(40px,4.5vw,62px);line-height:.94;margin:0}.people-head>p,.tech-head>p{font-size:15px;line-height:1.58;color:var(--muted);padding-top:12px}.people-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px}.people-cards article{background:var(--paper);padding:26px;min-height:205px}.people-cards b{font-size:11px;color:var(--teal);letter-spacing:.1em}.people-cards h3{font-size:29px;line-height:.9;margin:31px 0 13px}.people-cards p{font-size:13px;line-height:1.5;color:var(--muted)}.tech{background:#071f32;color:#eaf2ed;padding:94px 0}.tech .kicker{color:#9ccdc8}.tech-head>p{color:#afc5cb}.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px;border-top:1px solid #3e6070}.tech-grid article{padding:23px 20px 0 0;margin-right:20px;border-right:1px solid #3e6070;min-height:205px}.tech-grid article:last-child{border-right:0}.tech-grid b{font-size:10px;letter-spacing:.12em;color:var(--lime)}.tech-grid h3{font-size:25px;line-height:.92;margin:26px 0 13px}.tech-grid p{font-size:12px;line-height:1.5;color:#b3c8cd}.tech-note{margin:35px 0 0;font-size:11px;line-height:1.5;color:#8eabb4;max-width:760px}@media(max-width:720px){.people,.tech{padding:65px 0}.people-head,.tech-head,.people-cards,.tech-grid{grid-template-columns:1fr}.people-cards{margin-top:35px;gap:10px}.people-cards article{min-height:auto}.tech-grid{margin-top:35px}.tech-grid article{min-height:auto;border-right:0;border-bottom:1px solid #3e6070;margin:0;padding:22px 0}.tech-grid article:last-child{border-bottom:0}}`}</style>
-    <nav className="nav wrap"><a className="brand" href="#top"><b>03</b> HEALTH ANALYTICS</a><div><a href="#people">Why it matters</a><a href="#findings">Findings</a><a href="#tech">Under the hood</a><a href={repo} target="_blank" rel="noreferrer">Repository ↗</a></div></nav>
+  return (
+    <main>
+      <nav className="nav shell">
+        <a className="brand" href="#top"><span>03</span> HEALTH ANALYTICS</a>
+        <div className="navlinks"><a href="#findings">Findings</a><a href="#meaning">Why it matters</a><a href="#methods">Methods</a><a href={repo} target="_blank" rel="noreferrer">GitHub ↗</a></div>
+      </nav>
 
-    <section className="hero wrap" id="top">
-      <p className="kicker">UPDATED ANALYSIS · SDR 2026 HISTORICAL DATA · 2000–2025</p>
-      <div className="hero-grid"><div><h1>Past data.<br />Current data.<br /><i>Clearer insight.</i></h1><p className="lead">A refreshed global health analysis using SDR historical records through 2025, with updated clusters and one-year indicator estimates.</p><a className="cta" href="#findings">See the results ↓</a></div><aside className="hero-result"><span>UPDATED RESULT</span><strong>3</strong><h2>health<br />profiles</h2><p>207 countries grouped by their latest outcomes and recent health trends.</p><div className="result-line"><i /><i /><i /></div></aside></div>
-      <div className="hero-bottom"><span>2000–2025 CLUSTERING + 2026 INDICATOR ESTIMATES</span><span>SCROLL TO EXPLORE ↓</span></div>
-    </section>
+      <section className="hero shell" id="top">
+        <div className="eyebrow">GLOBAL HEALTH · SDG GOAL 3</div>
+        <div className="hero-grid">
+          <div>
+            <h1>Health data<br />that makes the<br /><em>gap visible.</em></h1>
+            <p className="hero-copy">This project turns maternal mortality and life expectancy data into a clear view of where health outcomes are strongest, where pressure is greatest, and why targeted action matters.</p>
+            <a className="button" href="#findings">Explore the findings ↓</a>
+          </div>
+          <aside className="signal-card" aria-label="Analysis summary">
+            <span className="card-label">THE CORE FINDING</span>
+            <strong>3</strong>
+            <h2>distinct health<br />profiles</h2>
+            <p>Countries with similar health outcomes and patterns sit together, making global differences easier to understand.</p>
+            <div className="signal-bars"><i /><i /><i /></div>
+          </aside>
+        </div>
+        <div className="hero-rule"><span>MATERNAL MORTALITY + LIFE EXPECTANCY</span><span>207 COUNTRIES ANALYSED</span></div>
+      </section>
 
-    <section className="finding-intro" id="findings"><div className="wrap"><p className="kicker inverse">01 · GLOBAL CLUSTERING FINDING</p><div className="intro-grid"><h2>Three health<br />worlds surfaced<br /><i>from the data.</i></h2><p>Both maternal mortality and life expectancy settle into three clear groups. The groups mirror the income and dashboard-rating patterns already visible in the Sustainable Development Report—but make the separation measurable.</p></div><div className="clusters"><article><b>01</b><span className="bar red"/><h3>Persistent<br />pressure</h3><p>High maternal mortality and lower life expectancy.</p><small>Predominantly low-income countries</small></article><article><b>02</b><span className="bar orange"/><h3>Progress in<br />transition</h3><p>Moderate outcomes with uneven improvement.</p><small>Upper-middle income countries</small></article><article><b>03</b><span className="bar green"/><h3>Established<br />health gains</h3><p>Low mortality and long life expectancy.</p><small>Well-resourced health systems</small></article></div></div></section>
+      <section className="finding-section" id="findings">
+        <div className="shell">
+          <div className="eyebrow light">01 · THE FINDING</div>
+          <div className="section-intro"><h2>One global picture.<br /><em>Three very different</em><br />health realities.</h2><p>The analysis groups countries by their health outcomes and direction of change. It does not rank people or countries—it reveals patterns that averages can hide.</p></div>
+          <div className="group-grid">
+            {groups.map((group) => <article key={group.number} className={`group ${group.tone}`}><b>{group.number}</b><span className="group-line" /><h3>{group.title}</h3><p>{group.copy}</p></article>)}
+          </div>
+        </div>
+      </section>
 
-    <section className="question wrap" id="question"><p className="kicker">ANALYSIS QUESTION · ANSWERED</p><div className="qa-grid"><div><span className="qa-label">THE QUESTION</span><h2>Can long-term health data identify meaningful country groups—and estimate what comes next?</h2></div><div className="answer"><span className="qa-label">THE ANSWER</span><p><b>Yes.</b> The updated analysis separates 207 countries into three distinct health profiles using their past and latest available data.</p><p>It also produces simple 2026 indicator estimates for the selected countries. These estimates show direction, not certainty: an improving trend can still sit alongside a large health gap.</p><p className="answer-note">The results now use SDR 2026 historical raw data from 2000–2025. The 2026 estimates are linear trend extrapolations and should not be treated as official SDR ratings.</p></div></div></section>
+      <section className="meaning shell" id="meaning">
+        <div className="eyebrow">02 · WHY THIS MATTERS</div>
+        <div className="meaning-top"><h2>Behind every number<br />is a question of <em>care.</em></h2><p>Health analytics is useful when it turns information into better decisions—where to look closer, which gaps need attention, and how to learn from countries facing similar conditions.</p></div>
+        <div className="benefit-grid">
+          <article><span>01</span><h3>See what averages miss.</h3><p>A single national score can hide sharp differences. Comparing health profiles makes the gaps easier to see.</p></article>
+          <article><span>02</span><h3>Ask better questions.</h3><p>Patterns help policymakers, researchers, and communities identify where an outcome needs more investigation.</p></article>
+          <article><span>03</span><h3>Focus action where it counts.</h3><p>Different health profiles need different responses. Evidence supports more practical, tailored choices.</p></article>
+        </div>
+      </section>
 
-    <section className="people" id="people"><div className="wrap"><p className="kicker">WHY THIS MATTERS · FOR EVERYONE</p><div className="people-head"><h2>Better health data<br />can lead to <i>better<br />everyday lives.</i></h2><p>Health statistics can feel distant. But they describe whether people can safely give birth, how long they are likely to live, and where a country&apos;s health services need the most attention.</p></div><div className="people-cards"><article><b>01 · SEE THE GAP</b><h3>Look beyond<br />an average.</h3><p>A country can appear to be improving while still facing serious challenges. Grouping similar countries helps reveal who is being left behind.</p></article><article><b>02 · ACT EARLIER</b><h3>Plan before<br />harm grows.</h3><p>Forecasts do not guarantee the future. They give health planners an earlier warning, so resources can be directed before a problem becomes worse.</p></article><article><b>03 · FIT THE RESPONSE</b><h3>Spend help<br />where it works.</h3><p>Different countries face different barriers. These findings support practical action that matches local health needs instead of applying the same solution everywhere.</p></article></div></div></section>
+      <section className="evidence">
+        <div className="shell evidence-layout">
+          <div><div className="eyebrow light">03 · EVIDENCE AT A GLANCE</div><h2>The pattern is<br /><em>measurable.</em></h2><p>Two grouping methods were compared using the same health features. The selected approach produced the clearest separation between country profiles.</p></div>
+          <div className="score-panel"><div><strong>0.393</strong><span>Selected clustering score</span></div><div><strong>207</strong><span>Countries with sufficient data</span></div><div><strong>3</strong><span>Health profiles</span></div></div>
+        </div>
+      </section>
 
-    <section className="latest"><div className="wrap"><div className="latest-head"><div><p className="kicker inverse">LATEST DATA CONTEXT · SDR 2026</p><h2>The newest SDR data<br />still shows a wide<br /><i>health gap.</i></h2></div><a href="https://dashboards.sdgindex.org/downloads/" target="_blank" rel="noreferrer">Open SDR 2026 data source ↗</a></div><div className="latest-stats"><article><strong>208</strong><span>Countries in the SDR 2026 database</span></article><article><strong>105</strong><span>Countries rated red on Goal 3</span></article><article><strong>62</strong><span>Countries rated orange on Goal 3</span></article><article><strong>139</strong><span>Countries with improving Goal 3 trend</span></article></div><p className="latest-note">Downloaded from the Sustainable Development Report 2026 database. Latest available maternal mortality values are generally from 2023; life-expectancy values extend to 2025 for the displayed country records.</p></div></section>
+      <section className="method-shell shell" id="methods">
+        <div className="eyebrow">04 · UNDER THE HOOD</div>
+        <div className="method-top"><h2>Simple inputs.<br /><em>Careful interpretation.</em></h2><p>For people who want the technical view, the analysis is transparent and reproducible in the project repository.</p></div>
+        <div className="method-grid">
+          <article><b>INPUTS</b><h3>Two indicators</h3><p>Maternal mortality and life expectancy provide complementary signals about health outcomes.</p></article>
+          <article><b>PREPARATION</b><h3>Comparable features</h3><p>Values are standardised and maternal mortality is transformed so extreme values do not dominate the grouping.</p></article>
+          <article><b>GROUPING</b><h3>K-Means, k = 3</h3><p>K-Means is compared with hierarchical clustering, then the clearer result is selected using silhouette score.</p></article>
+          <article><b>BOUNDARY</b><h3>Insight, not diagnosis</h3><p>The analysis identifies patterns. It does not explain every cause or replace local health expertise.</p></article>
+        </div>
+        <a className="button dark" href={repo} target="_blank" rel="noreferrer">View the analysis on GitHub ↗</a>
+      </section>
 
-    <section className="performance wrap"><p className="kicker">02 · CLUSTER QUALITY</p><div className="performance-head"><h2>The updated groups<br /><i>are distinct.</i></h2><p>Two clustering approaches were compared on the same long-term health features. K-Means produced the clearer separation and was selected for the updated groups.</p></div><div className="metrics"><article><strong>0.393</strong><span>Silhouette score</span><p>K-Means · selected method</p><div className="meter"><i style={{width:"39%"}} /></div></article><article><strong>0.381</strong><span>Silhouette score</span><p>Hierarchical clustering</p><div className="meter"><i style={{width:"38%"}} /></div></article><article><strong>207</strong><span>Countries</span><p>With sufficient historical data</p><div className="meter warm"><i style={{width:"100%"}} /></div></article></div><p className="source-note">Silhouette scores compare closeness to a country&apos;s own group versus other groups. Higher is better.</p></section>
-
-    <section className="forecast" id="forecast"><div className="wrap"><div className="forecast-top"><p className="kicker inverse">03 · 2026 INDICATOR ESTIMATES</p><span className="all-up">2000–2025 HISTORY<br />EXTENDED ONE YEAR</span></div><div className="forecast-title"><h2>Trends point<br /><i>forward</i><br />with care.</h2><p>Linear trend models extend each selected country&apos;s most recent eight years of data by one year. The figures are estimates for context, not official ratings.</p></div><div className="country-list">{countries.map((country, index) => <article key={country.name}><b>0{index + 1}</b><h3>{country.name}</h3><span className={`badge ${country.color}`}>{country.band}</span><p>{country.note}</p></article>)}</div><div className="forecast-foot"><div><strong>84.2</strong><span>Estimated 2026 life expectancy for Australia</span></div><div><strong>310.7</strong><span>Average maternal mortality in highest-pressure group</span></div><div><strong>80.7</strong><span>Average life expectancy in strong-outcomes group</span></div></div></div></section>
-
-    <section className="meaning wrap"><p className="kicker">04 · WHAT THE RESULTS MEAN</p><div className="meaning-grid"><h2>Use the gaps to<br /><i>target action.</i></h2><div><p>The most valuable cases are countries whose maternal mortality and life-expectancy patterns do not move together. A country can make progress on one dimension while lagging badly on another.</p><p>That is the signal for focused, indicator-specific intervention—not a one-size-fits-all health strategy.</p><a className="cta dark" href={repo} target="_blank" rel="noreferrer">View the project source ↗</a></div></div></section>
-
-    <section className="tech" id="tech"><div className="wrap"><p className="kicker">METHODS · TECHNICAL NOTES</p><div className="tech-head"><h2>How the updated<br /><i>analysis works.</i></h2><p>This is an offline analysis of SDR 2026 historical data, not a live prediction service.</p></div><div className="tech-grid"><article><b>INPUTS</b><h3>2000–2025 data</h3><p>Maternal mortality and life expectancy records from the SDR 2026 raw-data table. Gaps are interpolated within each country time series.</p></article><article><b>FEATURES</b><h3>Level + direction</h3><p>Each country is represented by its latest health values and recent annual change, so clustering accounts for outcomes and trajectory.</p></article><article><b>GROUPING</b><h3>K-Means, k = 3</h3><p>K-Means and Ward-linkage hierarchical clustering were compared. K-Means achieved the higher silhouette score.</p></article><article><b>ESTIMATES</b><h3>One year ahead</h3><p>Simple linear models extend each selected country&apos;s last eight years of indicators by one year to produce 2026 estimates.</p></article></div><p className="tech-note">Limitations: historical trends can change. The estimates do not account for sudden shocks such as pandemics, conflict, or policy changes, and they are not official SDR ratings.</p></div></section>
-    <footer><div className="wrap"><span>SDG GOAL 3 · GLOBAL HEALTH ANALYTICS</span><a href={repo} target="_blank" rel="noreferrer">GitHub repository ↗</a></div></footer>
-  </main>;
+      <footer><div className="shell"><span>SDG GOAL 3 · GLOBAL HEALTH ANALYTICS</span><a href={repo} target="_blank" rel="noreferrer">Open project source ↗</a></div></footer>
+    </main>
+  );
 }

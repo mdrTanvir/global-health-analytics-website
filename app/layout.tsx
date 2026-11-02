@@ -13,11 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SDG 3 — Global Health Analytics",
-  description: "Clustering countries and forecasting health progress toward SDG 3.",
+  title: "Global Health Analytics",
+  description: "An accessible view of global health patterns in maternal mortality and life expectancy.",
   openGraph: {
-    title: "SDG 3 — Global Health Analytics",
-    description: "Clustering countries and forecasting health progress toward SDG 3.",
+    title: "Global Health Analytics",
+    description: "An accessible view of global health patterns in maternal mortality and life expectancy.",
   },
   icons: {
     icon: "/favicon.svg",
