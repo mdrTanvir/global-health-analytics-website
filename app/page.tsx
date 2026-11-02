@@ -1,102 +1,30 @@
-const projectUrl = "https://github.com/mdrTanvir/SDG-Health-Analytics";
+const repo = "https://github.com/mdrTanvir/SDG-Health-Analytics";
 
-const indicators = [
-  { label: "Maternal mortality", short: "MMR", level: "high" },
-  { label: "Life expectancy", short: "LEB", level: "mid" },
-  { label: "SDG 3 achievement", short: "SDG", level: "low" },
+const countries = [
+  { name: "Australia", band: "High score", color: "green", note: "Highest predicted achievement · ~88" },
+  { name: "Albania", band: "Orange", color: "orange", note: "Meaningful, incomplete progress" },
+  { name: "Malaysia", band: "Orange", color: "orange", note: "Meaningful, incomplete progress" },
+  { name: "Morocco", band: "Red", color: "red", note: "Improving, with structural challenges" },
+  { name: "Thailand", band: "Red", color: "red", note: "Improving, with structural challenges" },
 ];
 
-const countries = ["Albania", "Morocco", "Australia", "Malaysia", "Thailand", "Uruguay"];
-
 export default function Home() {
-  return (
-    <main>
-      <nav className="nav shell" aria-label="Primary navigation">
-        <a className="brand" href="#top" aria-label="SDG 3 analytics home">
-          <span className="brand-mark">03</span>
-          <span>Health / Analytics</span>
-        </a>
-        <div className="nav-links">
-          <a href="#method">Method</a>
-          <a href="#findings">Findings</a>
-          <a href="#work">Project</a>
-        </div>
-        <a className="repo-link" href={projectUrl} target="_blank" rel="noreferrer">View repository <span aria-hidden="true">↗</span></a>
-      </nav>
+  return <main>
+    <nav className="nav wrap"><a className="brand" href="#top"><b>03</b> HEALTH ANALYTICS</a><div><a href="#findings">Findings</a><a href="#forecast">Forecast</a><a href={repo} target="_blank" rel="noreferrer">Repository ↗</a></div></nav>
 
-      <section className="hero shell" id="top">
-        <div className="hero-copy">
-          <p className="eyebrow"><span /> SDG 3 · Good Health & Well-being</p>
-          <h1>Mapping the<br /><em>shape</em> of global<br />health progress.</h1>
-          <p className="intro">A machine-learning study that clusters country health trajectories and forecasts progress towards the 2030 health goal.</p>
-          <div className="hero-actions">
-            <a className="button primary" href="#work">Explore the analysis <span aria-hidden="true">↓</span></a>
-            <a className="button text" href={projectUrl} target="_blank" rel="noreferrer">Open on GitHub <span aria-hidden="true">↗</span></a>
-          </div>
-        </div>
-        <div className="hero-art" aria-label="Abstract visualisation of country health trajectories" role="img">
-          <div className="orbital orbit-a" />
-          <div className="orbital orbit-b" />
-          <div className="orbital orbit-c" />
-          <div className="globe">
-            <div className="latitude lat-a" /><div className="latitude lat-b" /><div className="latitude lat-c" />
-            <div className="longitude long-a" /><div className="longitude long-b" />
-            <i className="dot dot-a" /><i className="dot dot-b" /><i className="dot dot-c" /><i className="dot dot-d" /><i className="dot dot-e" />
-          </div>
-          <div className="art-label label-a"><b>2013</b><span>baseline</span></div>
-          <div className="art-label label-b"><b>2030</b><span>target</span></div>
-          <div className="art-key"><i /> Health trajectory</div>
-        </div>
-        <div className="hero-foot"><span>01 / 03</span><p>From global patterns<br />to country-level insight</p><a href="#method" aria-label="Scroll to method">↓</a></div>
-      </section>
+    <section className="hero wrap" id="top">
+      <p className="kicker">NOTEBOOK RESULTS · SDR 2024 DATA · 2013–2022</p>
+      <div className="hero-grid"><div><h1>The findings,<br />not just the<br /><i>framework.</i></h1><p className="lead">An evidence-led view of global health progress: the country clusters that emerged, the strength of the prediction model, and what 2024 forecasts reveal.</p><a className="cta" href="#findings">See the results ↓</a></div><aside className="hero-result"><span>PRIMARY RESULT</span><strong>3</strong><h2>health<br />profiles</h2><p>Country groups consistently emerge across maternal mortality and life expectancy.</p><div className="result-line"><i /><i /><i /></div></aside></div>
+      <div className="hero-bottom"><span>CLUSTERING ANALYSIS + 2024 FORECASTING</span><span>SCROLL TO EXPLORE ↓</span></div>
+    </section>
 
-      <section className="statement"><div className="shell statement-grid">
-        <p className="section-num">01</p>
-        <h2>Health outcomes are not<br /><em>moving at the same pace.</em></h2>
-        <p>Most countries remain orange or red on SDG 3. This analysis uses the Sustainable Development Report to understand the structural patterns behind that progress—and the distance still to travel.</p>
-      </div></section>
+    <section className="finding-intro" id="findings"><div className="wrap"><p className="kicker inverse">01 · GLOBAL CLUSTERING FINDING</p><div className="intro-grid"><h2>Three health<br />worlds surfaced<br /><i>from the data.</i></h2><p>Both maternal mortality and life expectancy settle into three clear groups. The groups mirror the income and dashboard-rating patterns already visible in the Sustainable Development Report—but make the separation measurable.</p></div><div className="clusters"><article><b>01</b><span className="bar red"/><h3>Persistent<br />pressure</h3><p>High maternal mortality and lower life expectancy.</p><small>Predominantly low-income countries</small></article><article><b>02</b><span className="bar orange"/><h3>Progress in<br />transition</h3><p>Moderate outcomes with uneven improvement.</p><small>Upper-middle income countries</small></article><article><b>03</b><span className="bar green"/><h3>Established<br />health gains</h3><p>Low mortality and long life expectancy.</p><small>Well-resourced health systems</small></article></div></div></section>
 
-      <section className="method shell" id="method">
-        <div className="section-head"><p className="eyebrow"><span /> The approach</p><p className="section-num">02</p></div>
-        <div className="method-title"><h2>Two lenses.<br /><em>One health story.</em></h2><p>From 2013–2022 country indicators to 2024 outcome forecasts, the work combines unsupervised and supervised learning into one coherent view.</p></div>
-        <div className="method-cards">
-          <article className="method-card dark-card">
-            <p className="card-index">PHASE 01</p><h3>Find the<br />patterns</h3>
-            <p>Cluster countries by maternal mortality and life expectancy trajectories.</p>
-            <div className="cluster-vis" aria-label="Three country clusters"><i className="c1" /><i className="c2" /><i className="c3" /><i className="c4" /><i className="c5" /><i className="c6" /><i className="c7" /><i className="c8" /><i className="c9" /></div>
-            <div className="chip-row"><span>K-Means</span><span>Hierarchical</span><span>Silhouette score</span></div>
-          </article>
-          <article className="method-card light-card">
-            <p className="card-index">PHASE 02</p><h3>Project<br />forward</h3>
-            <p>Forecast 2024 SDG 3 achievement levels for a diverse group of countries.</p>
-            <div className="line-vis"><svg viewBox="0 0 300 110" aria-hidden="true"><path d="M4 92 C44 89 51 70 79 72 S112 51 141 60 S180 28 205 40 S253 12 296 15"/><path className="faint" d="M4 101 L296 101"/><circle cx="205" cy="40" r="4"/><circle cx="296" cy="15" r="4"/></svg><span>2024 forecast</span></div>
-            <div className="chip-row"><span>Linear regression</span><span>R² ≈ 0.97</span></div>
-          </article>
-        </div>
-      </section>
+    <section className="performance wrap"><p className="kicker">02 · MODEL PERFORMANCE</p><div className="performance-head"><h2>The model holds up<br /><i>where it matters.</i></h2><p>Cross-validation shows that health indicators explain most of the variation in SDG 3 achievement. Forecast confidence is strongest for life expectancy, while mortality remains more volatile.</p></div><div className="metrics"><article><strong>0.97</strong><span>Mean CV R²</span><p>Goal achievement model</p><div className="meter"><i style={{width:"97%"}} /></div></article><article><strong>0.95</strong><span>Mean CV R²</span><p>Life expectancy forecast</p><div className="meter"><i style={{width:"95%"}} /></div></article><article><strong>0.76—0.79</strong><span>Mean CV R²</span><p>Mortality forecasts</p><div className="meter warm"><i style={{width:"78%"}} /></div></article></div><p className="source-note">R² measures how much variation the model explains. Higher values indicate a closer fit to the observed data.</p></section>
 
-      <section className="findings" id="findings"><div className="shell">
-        <div className="section-head"><p className="eyebrow light"><span /> What emerged</p><p className="section-num light-num">03</p></div>
-        <div className="findings-main"><h2>Three distinct<br /><em>health worlds.</em></h2><p>Country groupings closely align with income levels and the Sustainable Development Report&apos;s red, orange, and green rating bands.</p></div>
-        <div className="cluster-row">
-          <article><b className="cluster-no">01</b><span className="cluster-line red" /><h3>Structural<br />pressure</h3><p>High maternal mortality and lower life expectancy</p></article>
-          <article><b className="cluster-no">02</b><span className="cluster-line orange" /><h3>Transition<br />in motion</h3><p>Improving outcomes with uneven pace of change</p></article>
-          <article><b className="cluster-no">03</b><span className="cluster-line green" /><h3>Established<br />health gains</h3><p>Low maternal mortality and longer life expectancy</p></article>
-        </div>
-      </div></section>
+    <section className="forecast" id="forecast"><div className="wrap"><div className="forecast-top"><p className="kicker inverse">03 · 2024 FORECASTS</p><span className="all-up">↑ ALL 10 COUNTRIES<br />PREDICTED TO IMPROVE</span></div><div className="forecast-title"><h2>Improvement is<br /><i>not the same</i><br />as arrival.</h2><p>The 2024 forecasts point upward for every selected country. Yet the predicted dashboard bands show how differently that progress is distributed.</p></div><div className="country-list">{countries.map((country, index) => <article key={country.name}><b>0{index + 1}</b><h3>{country.name}</h3><span className={`badge ${country.color}`}>{country.band}</span><p>{country.note}</p></article>)}</div><div className="forecast-foot"><div><strong>~88</strong><span>Australia’s highest predicted achievement score</span></div><div><strong>5</strong><span>Countries remain in the red band despite improvement</span></div><div><strong>4</strong><span>Countries fall in the orange band</span></div></div></div></section>
 
-      <section className="work shell" id="work">
-        <div><p className="eyebrow"><span /> The project</p><h2>Built to make the<br /><em>evidence inspectable.</em></h2></div>
-        <div className="work-side"><p>Explore the notebooks, source data, and reproducible analysis behind the study.</p><a className="button primary" href={projectUrl} target="_blank" rel="noreferrer">Browse the repository <span aria-hidden="true">↗</span></a></div>
-        <div className="work-grid">
-          <article className="data-card"><p>DATASET</p><b>Sustainable Development Report</b><span>2024 panel data · 2013—2022</span></article>
-          <article className="data-card"><p>FOCUS</p><b>Maternal mortality · Life expectancy</b><span>Key SDG 3 health indicators</span></article>
-          <article className="data-card"><p>TOOLKIT</p><b>Python · Pandas · scikit-learn</b><span>Matplotlib · Seaborn · SciPy · Jupyter</span></article>
-        </div>
-        <div className="country-strip"><span>Forecast countries</span><div>{countries.map((country) => <b key={country}>{country}</b>)}</div></div>
-      </section>
-
-      <footer><div className="shell footer-inner"><a className="brand" href="#top"><span className="brand-mark">03</span><span>Health / Analytics</span></a><p>Global health through a data lens.</p><a href={projectUrl} target="_blank" rel="noreferrer">GitHub ↗</a></div></footer>
-    </main>
-  );
+    <section className="meaning wrap"><p className="kicker">04 · WHAT THE RESULTS MEAN</p><div className="meaning-grid"><h2>Use the gaps to<br /><i>target action.</i></h2><div><p>The most valuable cases are countries whose maternal mortality and life-expectancy clusters do not align. A country can make progress on one dimension while lagging badly on another.</p><p>That is the signal for focused, indicator-specific intervention—not a one-size-fits-all health strategy.</p><a className="cta dark" href={repo} target="_blank" rel="noreferrer">View the notebooks ↗</a></div></div></section>
+    <footer><div className="wrap"><span>SDG GOAL 3 · GLOBAL HEALTH ANALYTICS</span><a href={repo} target="_blank" rel="noreferrer">GitHub repository ↗</a></div></footer>
+  </main>;
 }
