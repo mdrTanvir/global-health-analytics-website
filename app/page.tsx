@@ -1,78 +1,38 @@
 const repo = "https://github.com/mdrTanvir/SDG-Health-Analytics";
 
-const groups = [
-  { number: "01", title: "Highest pressure", copy: "High maternal mortality and shorter life expectancy point to a need for focused health-system support.", tone: "coral" },
-  { number: "02", title: "Transitioning outcomes", copy: "Progress is visible, yet outcomes remain uneven. These countries benefit from targeted, sustained investment.", tone: "gold" },
-  { number: "03", title: "Strong health outcomes", copy: "Low maternal mortality and longer life expectancy show what resilient care systems can achieve.", tone: "mint" },
+const findings = [
+  ["01", "Health outcomes form three clear patterns.", "Countries fall into high-pressure, transitioning, and strong-outcome groups when maternal mortality, life expectancy, and direction of change are considered together."],
+  ["02", "Progress is not the same as equity.", "A country can improve on one indicator while still carrying a large health gap. Looking at both indicators makes that easier to see."],
+  ["03", "Similar patterns support better questions.", "Comparing countries with similar health profiles helps focus attention on practical actions rather than one-size-fits-all solutions."],
+];
+
+const steps = [
+  ["Gather", "Use internationally comparable health records for maternal mortality and life expectancy."],
+  ["Compare", "Look at each country as a health profile, not as one number in isolation."],
+  ["Group", "Use the shared patterns to form three clear, interpretable country groups."],
+  ["Interpret", "Translate the patterns into questions health planners, researchers, and the public can use."],
 ];
 
 export default function Home() {
-  return (
-    <main>
-      <nav className="nav shell">
-        <a className="brand" href="#top"><span>03</span> HEALTH ANALYTICS</a>
-        <div className="navlinks"><a href="#findings">Findings</a><a href="#meaning">Why it matters</a><a href="#methods">Methods</a><a href={repo} target="_blank" rel="noreferrer">GitHub ↗</a></div>
-      </nav>
+  return <main>
+    <nav className="nav shell"><a className="brand" href="#top"><span>03</span> HEALTH ANALYTICS</a><div className="navlinks"><a href="#question">The research</a><a href="#findings">Findings</a><a href="#how">How it works</a><a href="#technical">Technical notes</a></div></nav>
 
-      <section className="hero shell" id="top">
-        <div className="eyebrow">GLOBAL HEALTH · SDG GOAL 3</div>
-        <div className="hero-grid">
-          <div>
-            <h1>Health data<br />that makes the<br /><em>gap visible.</em></h1>
-            <p className="hero-copy">This project turns maternal mortality and life expectancy data into a clear view of where health outcomes are strongest, where pressure is greatest, and why targeted action matters.</p>
-            <a className="button" href="#findings">Explore the findings ↓</a>
-          </div>
-          <aside className="signal-card" aria-label="Analysis summary">
-            <span className="card-label">THE CORE FINDING</span>
-            <strong>3</strong>
-            <h2>distinct health<br />profiles</h2>
-            <p>Countries with similar health outcomes and patterns sit together, making global differences easier to understand.</p>
-            <div className="signal-bars"><i /><i /><i /></div>
-          </aside>
-        </div>
-        <div className="hero-rule"><span>MATERNAL MORTALITY + LIFE EXPECTANCY</span><span>207 COUNTRIES ANALYSED</span></div>
-      </section>
+    <section className="hero shell" id="top">
+      <div className="eyebrow">FOR PEOPLE WHO WANT THE STORY FIRST</div>
+      <div className="hero-grid"><div><h1>What can health<br />data tell us about<br /><em>where care is needed?</em></h1><p className="hero-copy">This project makes a complex global health analysis understandable: the question it asks, the patterns it finds, and why those patterns matter to everyday lives.</p><a className="button" href="#question">Start with the research question ↓</a></div><aside className="signal-card"><span className="card-label">IN ONE GLANCE</span><strong>3</strong><h2>health patterns<br />across countries</h2><p>One clear way to see unequal outcomes—and to ask where focused attention can help.</p><div className="signal-bars"><i /><i /><i /></div></aside></div>
+      <div className="hero-rule"><span>THE PLAIN-LANGUAGE RESEARCH STORY</span><span>TECHNICAL DETAILS BELOW ↓</span></div>
+    </section>
 
-      <section className="finding-section" id="findings">
-        <div className="shell">
-          <div className="eyebrow light">01 · THE FINDING</div>
-          <div className="section-intro"><h2>One global picture.<br /><em>Three very different</em><br />health realities.</h2><p>The analysis groups countries by their health outcomes and direction of change. It does not rank people or countries—it reveals patterns that averages can hide.</p></div>
-          <div className="group-grid">
-            {groups.map((group) => <article key={group.number} className={`group ${group.tone}`}><b>{group.number}</b><span className="group-line" /><h3>{group.title}</h3><p>{group.copy}</p></article>)}
-          </div>
-        </div>
-      </section>
+    <section className="question" id="question"><div className="shell"><div className="eyebrow light">01 · THE RESEARCH QUESTION</div><div className="question-grid"><div><span className="small-label">WE ASKED</span><h2>Can health data reveal meaningful groups of countries—and help us understand <em>where health gaps are largest?</em></h2></div><div className="answer"><span className="small-label">IN PLAIN LANGUAGE</span><p>Yes. Instead of treating every country as a single score, the analysis looks for countries that share similar health outcomes.</p><p>That gives a clearer picture of the global health gap: who faces the greatest pressure, who is making a difficult transition, and who has strong outcomes to learn from.</p></div></div></div></section>
 
-      <section className="meaning shell" id="meaning">
-        <div className="eyebrow">02 · WHY THIS MATTERS</div>
-        <div className="meaning-top"><h2>Behind every number<br />is a question of <em>care.</em></h2><p>Health analytics is useful when it turns information into better decisions—where to look closer, which gaps need attention, and how to learn from countries facing similar conditions.</p></div>
-        <div className="benefit-grid">
-          <article><span>01</span><h3>See what averages miss.</h3><p>A single national score can hide sharp differences. Comparing health profiles makes the gaps easier to see.</p></article>
-          <article><span>02</span><h3>Ask better questions.</h3><p>Patterns help policymakers, researchers, and communities identify where an outcome needs more investigation.</p></article>
-          <article><span>03</span><h3>Focus action where it counts.</h3><p>Different health profiles need different responses. Evidence supports more practical, tailored choices.</p></article>
-        </div>
-      </section>
+    <section className="findings shell" id="findings"><div className="eyebrow">02 · WHAT THE ANALYSIS FOUND</div><div className="findings-top"><h2>Three findings that<br /><em>make the picture clearer.</em></h2><p>These are not labels for people or nations. They are practical patterns in the data that invite more focused questions and action.</p></div><div className="finding-list">{findings.map(([number, title, copy]) => <article key={number}><b>{number}</b><div><h3>{title}</h3><p>{copy}</p></div></article>)}</div></section>
 
-      <section className="evidence">
-        <div className="shell evidence-layout">
-          <div><div className="eyebrow light">03 · EVIDENCE AT A GLANCE</div><h2>The pattern is<br /><em>measurable.</em></h2><p>Two grouping methods were compared using the same health features. The selected approach produced the clearest separation between country profiles.</p></div>
-          <div className="score-panel"><div><strong>0.393</strong><span>Selected clustering score</span></div><div><strong>207</strong><span>Countries with sufficient data</span></div><div><strong>3</strong><span>Health profiles</span></div></div>
-        </div>
-      </section>
+    <section className="why"><div className="shell why-grid"><div><div className="eyebrow light">03 · WHY IT MATTERS</div><h2>Better questions<br />can lead to <em>better care.</em></h2></div><div><p>Health numbers can feel abstract. In real life, they speak to whether a person can safely give birth, whether families can access care, and whether communities can expect longer, healthier lives.</p><p>This analysis does not prescribe a single answer. It helps make the gaps visible so decisions can be more informed, more local, and more humane.</p></div></div></section>
 
-      <section className="method-shell shell" id="methods">
-        <div className="eyebrow">04 · UNDER THE HOOD</div>
-        <div className="method-top"><h2>Simple inputs.<br /><em>Careful interpretation.</em></h2><p>For people who want the technical view, the analysis is transparent and reproducible in the project repository.</p></div>
-        <div className="method-grid">
-          <article><b>INPUTS</b><h3>Two indicators</h3><p>Maternal mortality and life expectancy provide complementary signals about health outcomes.</p></article>
-          <article><b>PREPARATION</b><h3>Comparable features</h3><p>Values are standardised and maternal mortality is transformed so extreme values do not dominate the grouping.</p></article>
-          <article><b>GROUPING</b><h3>K-Means, k = 3</h3><p>K-Means is compared with hierarchical clustering, then the clearer result is selected using silhouette score.</p></article>
-          <article><b>BOUNDARY</b><h3>Insight, not diagnosis</h3><p>The analysis identifies patterns. It does not explain every cause or replace local health expertise.</p></article>
-        </div>
-        <a className="button dark" href={repo} target="_blank" rel="noreferrer">View the analysis on GitHub ↗</a>
-      </section>
+    <section className="how shell" id="how"><div className="eyebrow">04 · HOW THE RESEARCH WAS DONE</div><div className="how-top"><h2>From health records<br />to a <em>clearer story.</em></h2><p>The process is designed to be simple to explain, even though it uses data-science methods behind the scenes.</p></div><div className="step-grid">{steps.map(([title, copy], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></section>
 
-      <footer><div className="shell"><span>SDG GOAL 3 · GLOBAL HEALTH ANALYTICS</span><a href={repo} target="_blank" rel="noreferrer">Open project source ↗</a></div></footer>
-    </main>
-  );
+    <section className="technical" id="technical"><div className="shell"><div className="technical-banner"><div><div className="eyebrow light">FOR TECHNICAL READERS</div><h2>Under the hood.</h2><p>The research story ends above. This section explains the implementation, decisions, and limits for people who want to inspect the method.</p></div><a className="button pale" href={repo} target="_blank" rel="noreferrer">Open the code on GitHub ↗</a></div><div className="tech-grid"><article><b>DATA</b><h3>Two health indicators</h3><p>Maternal mortality and life expectancy are selected as complementary measures of health outcomes.</p></article><article><b>FEATURES</b><h3>Outcome + direction</h3><p>Each country is represented by current indicator values plus recent direction of change. Maternal mortality is log-transformed before scaling.</p></article><article><b>MODEL SELECTION</b><h3>K-Means is selected</h3><p>K-Means and Ward hierarchical clustering are evaluated on the same standardised features. K-Means has the stronger silhouette score: 0.393 versus 0.381.</p></article><article><b>VALIDATION</b><h3>Time-aware forecasting</h3><p>Short-horizon approaches are tested by withholding the last observation per country. Persistence outperforms the tested linear trends for both indicators.</p></article><article><b>REPRODUCIBILITY</b><h3>Open notebooks</h3><p>The repository contains executed notebooks, source links, requirements, and a refresh script for the analysis.</p></article><article><b>LIMITATION</b><h3>Pattern, not cause</h3><p>Clustering describes similarity. It cannot establish causality or replace country context, policy knowledge, or health expertise.</p></article></div></div></section>
+
+    <footer><div className="shell"><span>SDG GOAL 3 · GLOBAL HEALTH ANALYTICS</span><a href={repo} target="_blank" rel="noreferrer">View research repository ↗</a></div></footer>
+  </main>;
 }
